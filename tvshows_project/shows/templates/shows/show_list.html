@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Shows</title>
+</head>
+<body>
+    <h1>All Shows</h1>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shows\style.css'%}">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for show in shows %}
+        <tr>
+            <td>{{ show.id }}</td>
+            <td>{{ show.title }}</td>
+            <td>{{ show.network }}</td>
+            <td>{{ show.release_date }}</td>
+            <td>
+                <a href="{% url 'shows:detail' show.id %}">Show</a>
+                <a href="{% url 'shows:edit' show.id %}">Edit</a>
+                <form action="{% url 'shows:destroy' show.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'shows:new' %}">Add a New Show</a>
+</body>
+</html>

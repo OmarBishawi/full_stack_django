@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Show</title>
+</head>
+<body>
+    <h1>Edit Show</h1>
+    <form action="{% url 'shows:update' show.id %}" method="POST">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ show.title }}"><br>
+        <label for="network">Network:</label>
+        <input type="text" id="network" name="network" value="{{ show.network }}"><br>
+        <label for="release_date">Release Date:</label>
+        <input type="date" id="release_date" name="release_date" value="{{ show.release_date }}"><br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{ show.description }}</textarea><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'shows:detail' show.id %}">Go to Show</a>
+    <a href="{% url 'shows:index' %}">Go Back</a>
+</body>
+</html>

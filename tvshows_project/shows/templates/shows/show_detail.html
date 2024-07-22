@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ show.title }}</title>
+</head>
+<body>
+    <h1>{{ show.title }}</h1>
+    <p>Network: {{ show.network }}</p>
+    <p>Release Date: {{ show.release_date }}</p>
+    <p>Description: {{ show.description }}</p>
+    <p>Last Updated: {{ show.updated_at }}</p>
+    <a href="{% url 'shows:edit' show.id %}">Edit</a>
+    <form action="{% url 'shows:destroy' show.id %}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'shows:index' %}">Go Back</a>
+</body>
+</html>
