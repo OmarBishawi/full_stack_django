@@ -1,0 +1,22 @@
+<!-- shows/templates/shows/show_detail.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Details</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shows/styles.css' %}">
+</head>
+<body>
+    <h1>{{ show.title }}</h1>
+    <p><strong>Network:</strong> {{ show.network }}</p>
+    <p><strong>Release Date:</strong> {{ show.release_date }}</p>
+    <p><strong>Description:</strong> {{ show.description }}</p>
+    <a href="{% url 'shows:edit' show.id %}">Edit</a>
+    <form action="{% url 'shows:destroy' show.id %}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'shows:index' %}">Back to All Shows</a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!-- shows/templates/shows/new_show.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add a New Show</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shows/styles.css' %}">
+</head>
+<body>
+    <h1>Add a New Show</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" required>
+        </p>
+        <p>
+            <label for="network">Network:</label>
+            <input type="text" name="network" id="network" required>
+        </p>
+        <p>
+            <label for="release_date">Release Date:</label>
+            <input type="date" name="release_date" id="release_date" required>
+        </p>
+        <p>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" required></textarea>
+        </p>
+        <button type="submit">Create</button>
+    </form>
+    <a href="{% url 'shows:index' %}">Back to All Shows</a>
+</body>
+</html>
