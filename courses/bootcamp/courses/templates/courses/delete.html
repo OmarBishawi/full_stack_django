@@ -1,0 +1,18 @@
+<!-- bootcamp_courses/courses/templates/courses/delete.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete a course</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete the following course?</h1>
+    <p>Name: {{ course.name }}</p>
+    <p>Description: {{ course.description.text }}</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" name="confirm">Yes! I want to delete this</button>
+        <a href="/">No</a>
+    </form>
+</body>
+</html>

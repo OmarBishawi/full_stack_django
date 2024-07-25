@@ -1,0 +1,27 @@
+<!-- bootcamp_courses/courses/templates/courses/comments.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comments for {{ course.name }}</title>
+</head>
+<body>
+    <h1>Comments for {{ course.name }}</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>
+            Comment: <textarea name="comment"></textarea>
+        </p>
+        <button type="submit">Add Comment</button>
+    </form>
+    
+    <h2>All Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.text }} - {{ comment.date_added }}</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="/">Back to Courses</a>
+</body>
+</html>

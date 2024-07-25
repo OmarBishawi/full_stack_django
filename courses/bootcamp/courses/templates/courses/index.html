@@ -1,0 +1,50 @@
+<!-- bootcamp_courses/courses/templates/courses/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootcamp Courses</title>
+</head>
+<body>
+    <h1>Add a new course</h1>
+    <form action="{% url 'add_course' %}" method="post">
+        {% csrf_token %}
+        <p>
+            Name: <input type="text" name="name" value="{{ name|default_if_none:'' }}">
+        </p>
+        <p>
+            Description: <textarea name="description">{{ description|default_if_none:'' }}"></textarea>
+        </p>
+        <button type="submit">Add</button>
+    </form>
+
+    {% if errors %}
+        <ul>
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Courses</h2>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description.text }}</td>
+            <td>{{ course.date_added }}</td>
+            <td>
+                <a href="/remove/{{ course.id }}/">Remove</a> |
+                <a href="/comments/{{ course.id }}/">Comments</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
